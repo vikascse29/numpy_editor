@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import io
 
-st.set_page_config(page_title="NumPy Viewer & Editor", layout="wide")
+st.set_page_config(page_title="NumPy Editor", layout="wide")
 st.title("🧬 NumPy Array Viewer & Editor (Structured + Unstructured)")
 
 uploaded_file = st.file_uploader("Upload a NumPy file (.npy or .npz)", type=["npy", "npz"])
