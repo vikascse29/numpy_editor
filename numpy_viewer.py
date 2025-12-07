@@ -4,7 +4,7 @@ import pandas as pd
 import io
 
 st.set_page_config(page_title="NumPy Editor", layout="wide")
-st.title("🧬 NumPy Array Editor (Structured + Unstructured)")
+st.title("🧬 NumPy Array Editor")
 
 uploaded_file = st.file_uploader("Upload a NumPy file (.npy or .npz)", type=["npy", "npz"])
 
