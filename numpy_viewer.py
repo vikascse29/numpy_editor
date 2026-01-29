@@ -4,7 +4,7 @@ import pandas as pd
 import io
 
 st.set_page_config(page_title="NumPy Editor", layout="wide")
-st.title("🧬 NumPy Array Editor")
+st.title("NumPy Array Editor")
 
 uploaded_file = st.file_uploader("Upload a NumPy file (.npy or .npz)", type=["npy", "npz"])
 
@@ -24,12 +24,12 @@ if uploaded_file:
     selected = st.selectbox("Choose an array to view/edit:", list(arrays.keys()))
     arr = arrays[selected]
 
-    st.subheader(f"📌 Viewing: {selected}")
+    st.subheader(f"Viewing: {selected}")
 
     # -----------------------------
     #  ARRAY METADATA
     # -----------------------------
-    st.write("### 📐 Array Details")
+    st.write("### Array Details")
     st.write(f"- **Shape**: `{arr.shape}`")
     st.write(f"- **Dtype**: `{arr.dtype}`")
     st.write(f"- **Size**: `{arr.size}`")
@@ -39,15 +39,15 @@ if uploaded_file:
     #  STRUCTURED ARRAY HANDLING
     # -----------------------------
     if arr.dtype.names:
-        st.subheader("🗂 Structured Array Detected")
+        st.subheader("Structured Array Detected")
 
         df = pd.DataFrame(arr)
 
-        st.write("### ✏️ Edit Structured Array")
+        st.write("### Edit Structured Array")
         edited_df = st.data_editor(df, height=500)
 
         # Convert edited dataframe back to structured numpy array
-        st.write("### 💾 Save Edited Structured Array")
+        st.write("### Save Edited Structured Array")
         if st.button("Save .npy"):
             new_arr = np.zeros(len(edited_df), dtype=arr.dtype)
             for field in arr.dtype.names:
@@ -70,7 +70,7 @@ if uploaded_file:
 
         # 1D array -> editable list
         if arr.ndim == 1:
-            st.write("### ✏️ Edit 1D Array")
+            st.write("###  Edit 1D Array")
             edited_list = st.text_area("Comma-separated values:", ",".join(map(str, arr)))
 
             if edited_list.strip():
@@ -82,7 +82,7 @@ if uploaded_file:
 
         # 2D or higher arrays edited as DataFrame
         else:
-            st.write("### ✏️ Edit 2D+ Array")
+            st.write("### Edit 2D+ Array")
 
             if arr.ndim == 2:
                 df = pd.DataFrame(arr)
@@ -97,7 +97,7 @@ if uploaded_file:
                 new_arr[0] = edited_df.to_numpy()
 
         # Save button
-        st.write("### 💾 Save Edited Array")
+        st.write("### Save Edited Array")
         if st.button("Save Edited .npy"):
             buffer = io.BytesIO()
             np.save(buffer, new_arr)
